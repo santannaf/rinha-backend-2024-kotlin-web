@@ -6,11 +6,12 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
-@Transactional(propagation = Propagation.NEVER)
+//@Transactional(propagation = Propagation.NEVER)
 class CreateTransactionUseCase(
     private val transactionRepository: TransactionRepository,
     private val accountRepository: AccountRepository,
 ) {
+    @Transactional
     fun movementAccount(request: TransactionRequest, customerId: Int): Map<String, Any?> {
         if (customerId < 0 || customerId > 5) throw CustomerNotFoundException("customer not found")
 
@@ -31,6 +32,7 @@ class CreateTransactionUseCase(
         return mapOf("limite" to result.third, "saldo" to result.second)
     }
 
+    @Transactional(readOnly = true)
     fun statement(customerId: Int): Map<String, Any>? {
         if (customerId < 0 || customerId > 5) throw CustomerNotFoundException("customer not found")
 
