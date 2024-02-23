@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(path = ["/clientes"])
 class AccountController(
-    private val createTransactionUseCase: CreateTransactionUseCase
+    private val createTransactionUseCase: CreateTransactionUseCase,
+    private val fetchStatementAccountUseCase: FetchStatementAccountUseCase
 ) {
     @PostMapping(path = ["/{customerId}/transacoes"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createTransaction(@PathVariable customerId: Int, @RequestBody payload: CreateTransactionRequest): ResponseEntity<Map<String, Any?>> {
         return ResponseEntity.ok(createTransactionUseCase.movementAccount(payload, customerId))
     }
 
-    @GetMapping(path = ["/{customerId}/extrato"])
-    fun fetchStatementByCustomerId(@PathVariable customerId: Int): ResponseEntity<Map<String, Any>> {
-        return ResponseEntity.ok(createTransactionUseCase.statement(customerId))
+    @GetMapping(path = ["/{customerId}/extrato"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun fetchStatementByCustomerId(@PathVariable customerId: Int): ResponseEntity<Statement> {
+        return ResponseEntity.ok(fetchStatementAccountUseCase.statement(customerId))
     }
 }

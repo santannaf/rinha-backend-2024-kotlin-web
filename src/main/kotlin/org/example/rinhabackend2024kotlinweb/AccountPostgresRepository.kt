@@ -9,13 +9,6 @@ import org.springframework.stereotype.Repository
 class AccountPostgresRepository(
     private val jdbcClient: JdbcClient
 ) : AccountRepository {
-    override fun fetchAccountByCustomerId(customerId: Int): Account {
-        return this.jdbcClient.sql("select account_limit as accountLimit, balance from account A where customer_id = :customerId")
-            .param("customerId", customerId)
-            .query(Account::class.java)
-            .single()
-    }
-
     override fun updateBalance(amount: Long, customerId: Int): Triple<Int, Any?, Any?> {
         val keyHolder: KeyHolder = GeneratedKeyHolder()
         val rowsUpdated =

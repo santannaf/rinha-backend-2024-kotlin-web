@@ -21,6 +21,8 @@
   }, {
     "pattern":"\\QMETA-INF/services/java.util.spi.ResourceBundleControlProvider\\E"
   }, {
+    "pattern":"\\QMETA-INF/services/kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoader\\E"
+  }, {
     "pattern":"\\QMETA-INF/services/kotlin.reflect.jvm.internal.impl.resolve.ExternalOverridabilityCondition\\E"
   }, {
     "pattern":"\\QMETA-INF/services/kotlin.reflect.jvm.internal.impl.util.ModuleVisibilityHelper\\E"
@@ -132,6 +134,8 @@
     "pattern":"\\Qorg/example/rinhabackend2024kotlinweb/AccountRepository.class\\E"
   }, {
     "pattern":"\\Qorg/example/rinhabackend2024kotlinweb/CreateTransactionUseCase.class\\E"
+  }, {
+    "pattern":"\\Qorg/example/rinhabackend2024kotlinweb/FetchStatementAccountUseCase.class\\E"
   }, {
     "pattern":"\\Qorg/example/rinhabackend2024kotlinweb/TransactionPostgresRepository.class\\E"
   }, {
